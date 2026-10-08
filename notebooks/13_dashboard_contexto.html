@@ -1,0 +1,1440 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>13. Entregable 2: el dashboard y la pestaña «Contexto del problema» &#8212; Riesgo de entrega tardía en DataCo (sin fuga)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/13_dashboard_contexto';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="14. Pestaña «EDA»: interpretación de cada resultado" href="14_dashboard_eda.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Riesgo de entrega tardía en DataCo (sin fuga)</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    13. Entregable 2: el dashboard y la pestaña «Contexto del problema»
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="14_dashboard_eda.html">14. Pestaña «EDA»: interpretación de cada resultado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_dashboard_modelos.html">15. Pestaña «Modelos base»: interpretación de cada resultado</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/juandpolo22/Avance_1_Polo_Pallares" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/13_dashboard_contexto.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>13. Entregable 2: el dashboard y la pestaña «Contexto del problema»</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-y-ejecucion">Arquitectura y ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indicadores-de-la-pestana-1">13.1 Indicadores de la pestaña 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pedido-vs-linea-de-pedido-el-nivel-de-analisis">13.2 Pedido vs línea de pedido: el nivel de análisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-importancia-y-pregunta">13.3 Problema, importancia y pregunta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-la-variable-objetivo-corregida">13.4 Definición de la variable objetivo (corregida)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metrica-elegida-metricas-complementarias-y-lenguaje-de-referencia">13.5 Métrica elegida, métricas complementarias y lenguaje de referencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#particion-cronologica">13.6 Partición cronológica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-de-consistencia-dashboard-libro">13.7 Verificación de consistencia dashboard ↔ libro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-cambios-de-esta-version">13.8 Registro de cambios de esta versión</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="entregable-2-el-dashboard-y-la-pestana-contexto-del-problema">
+<h1>13. Entregable 2: el dashboard y la pestaña «Contexto del problema»<a class="headerlink" href="#entregable-2-el-dashboard-y-la-pestana-contexto-del-problema" title="Link to this heading">#</a></h1>
+<p><strong>Autores: Juan David Polo y Gabriella Pallares.</strong></p>
+<p><strong>Dashboard desplegado:</strong> <a class="reference external" href="https://dataco-dashboard.onrender.com/">https://dataco-dashboard.onrender.com/</a></p>
+<p>Este capítulo y los dos siguientes son el <strong>informe del desarrollo del dashboard</strong>. Cada
+figura del dashboard aparece aquí con <strong>los mismos datos y cálculos</strong> (se genera con las mismas funciones de
+<code class="docutils literal notranslate"><span class="pre">dashboard/figuras.py</span></code>; el dashboard solo les aplica el estilo visual de <code class="docutils literal notranslate"><span class="pre">dashboard/estilo_figuras.py</span></code> y un título que comunica el hallazgo), seguida de su interpretación y de detalles que no caben en el
+dashboard: pruebas estadísticas, tablas completas y decisiones de diseño.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pestaña del dashboard</p></th>
+<th class="head"><p>Subpestañas</p></th>
+<th class="head"><p>Capítulo del informe</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1 · Contexto del problema</p></td>
+<td><p>A · Resumen · B · Datos y partición · C · Objetivo y unidad · D · Método y fuente</p></td>
+<td><p>13 (este)</p></td>
+</tr>
+<tr class="row-odd"><td><p>2 · Análisis exploratorio (EDA)</p></td>
+<td><p>A · Objetivo y calidad · B · Relaciones con el objetivo · C · Tiempo y espacio · D · Auditoría de fuga</p></td>
+<td><p>14</p></td>
+</tr>
+<tr class="row-even"><td><p>3 · Modelos base (regresión logística)</p></td>
+<td><p>Desempeño · ROC · Matriz de confusión · Umbral · Calibración y diagnóstico</p></td>
+<td><p>15</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los cambios metodológicos, de claridad y de presentación de esta versión respecto a la anterior están
+listados al final del capítulo (sección 13.8) para que ninguno quede implícito.</p>
+<blockquote>
+<div><p><strong>Guía de lectura.</strong> Cada resultado del dashboard termina aquí con dos bloques: <strong>Interpretación</strong> (qué dice el resultado y cómo leerlo) y <strong>Detalles que no aparecen en el dashboard</strong> (tablas, pruebas, cifras y decisiones que el dashboard omite para no recargarse).</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="n">project_root</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="p">(</span><span class="n">project_root</span> <span class="o">/</span> <span class="s2">"_config.yml"</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">project_root</span><span class="o">.</span><span class="n">parent</span> <span class="o">==</span> <span class="n">project_root</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">"No se encontró _config.yml. Ejecuta el notebook dentro de la carpeta del libro."</span><span class="p">)</span>
+    <span class="n">project_root</span> <span class="o">=</span> <span class="n">project_root</span><span class="o">.</span><span class="n">parent</span>
+<span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">project_root</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">project_root</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">_folder</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"tables"</span><span class="p">,</span> <span class="s2">"figures"</span><span class="p">):</span>          <span class="c1"># se crean si no existen</span>
+    <span class="p">(</span><span class="n">project_root</span> <span class="o">/</span> <span class="n">_folder</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.project_utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">configure_plots</span><span class="p">()</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"display.max_columns"</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"display.width"</span><span class="p">,</span> <span class="mi">170</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"display.max_colwidth"</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">TABLES</span> <span class="o">=</span> <span class="n">project_root</span> <span class="o">/</span> <span class="s2">"tables"</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">md_out</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">project_root</span> <span class="o">/</span> <span class="s2">"dashboard"</span><span class="p">))</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">figuras</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">F</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">textos</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">T</span>
+<span class="n">_plotly</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"cargado"</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mostrar</span><span class="p">(</span><span class="n">fig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Muestra una figura Plotly del dashboard (la primera de la página carga plotly.js desde la CDN)."""</span>
+    <span class="n">incluir</span> <span class="o">=</span> <span class="s2">"cdn"</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">_plotly</span><span class="p">[</span><span class="s2">"cargado"</span><span class="p">]</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="n">_plotly</span><span class="p">[</span><span class="s2">"cargado"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">pio</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">full_html</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_plotlyjs</span><span class="o">=</span><span class="n">incluir</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">"displaylogo"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"responsive"</span><span class="p">:</span> <span class="kc">True</span><span class="p">})))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="arquitectura-y-ejecucion">
+<h2>Arquitectura y ejecución<a class="headerlink" href="#arquitectura-y-ejecucion" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>dashboard/
+├── preparar_datos.py          # se ejecuta una vez: lee el CSV y las tablas del Entregable 1, ajusta los
+│                              # modelos base, genera las predicciones OOF y guarda datos agregados en datos/
+├── datos/                     # CSV/JSON pequeños (lo único que lee el dashboard)
+├── figuras.py                 # funciones Plotly compartidas por el dashboard, la vista previa y este libro
+├── estilo_figuras.py          # apariencia de las figuras en el dashboard (colores, leyendas, márgenes); no toca datos
+├── hallazgos.py               # títulos que comunican el hallazgo de cada gráfico (se calculan desde los artefactos)
+├── textos.py                  # textos del dashboard; sus cifras se calculan desde los artefactos
+├── app.py                     # aplicación Dash: 3 pestañas, subpestañas y callbacks (expone `server`)
+├── exportar_html.py           # genera vista_previa_dashboard.html (estática, sin servidor)
+├── verificar_consistencia.py  # comprueba que dashboard, CSV y tablas del libro coinciden
+└── assets/estilo.css          # estilos (los comparten la app Dash y la vista previa HTML)
+render.yaml                    # despliegue en Render (gunicorn dashboard.app:server)
+</pre></div>
+</div>
+<p>Para usarlo, desde la raíz del proyecto:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+python<span class="w"> </span>dashboard/preparar_datos.py<span class="w">     </span><span class="c1"># solo si cambian los datos o los modelos (≈ 1 min)</span>
+python<span class="w"> </span>dashboard/app.py<span class="w">                </span><span class="c1"># abrir http://127.0.0.1:8050 (puerto configurable con PORT)</span>
+gunicorn<span class="w"> </span>dashboard.app:server<span class="w">          </span><span class="c1"># producción (Render)</span>
+</pre></div>
+</div>
+<p><strong>Decisiones de diseño.</strong></p>
+<ul class="simple">
+<li><p><strong>Datos precalculados.</strong> El dashboard no lee el CSV de 95 MB ni ajusta modelos al abrirse:
+solo lee agregados pequeños. Así arranca en segundos y funciona en equipos con poca memoria.</p></li>
+<li><p><strong>Una sola fuente para las figuras y las cifras.</strong> <code class="docutils literal notranslate"><span class="pre">figuras.py</span></code> alimenta el dashboard, la vista previa y
+este libro; <code class="docutils literal notranslate"><span class="pre">textos.py</span></code> calcula las cifras de los textos desde los mismos archivos. Las interpretaciones aquí
+corresponden exactamente a lo que se ve en el dashboard, y <code class="docutils literal notranslate"><span class="pre">verificar_consistencia.py</span></code> lo comprueba (sección 13.7).</p></li>
+<li><p><strong>Separación EDA / prueba y origen visible.</strong> El EDA usa solo el entrenamiento; la prueba solo aparece en la pestaña
+de modelos. Cada resultado lleva una insignia: <strong>TRAIN</strong> (entrenamiento), <strong>OOF</strong> (predicciones fuera de pliegue del
+entrenamiento) o <strong>TEST</strong> (prueba cronológica), con los colores de la partición (azul, aqua, naranja).</p></li>
+<li><p><strong>El umbral no se explora con la prueba.</strong> El control de umbral usa solo predicciones OOF; la prueba se evalúa con el umbral 0,50 fijado de antemano (capítulo 15).</p></li>
+<li><p><strong>Color con significado fijo y accesible.</strong> Azul oscuro y azul = entrenamiento y modelo elegido (azul claro = no tardía y modelo aditivo), verde = validación OOF y comprobaciones correctas,
+naranja = solo el conjunto de prueba (TEST), rojo = solo alertas (variables con fuga), gris = referencias (Dummy, gap, cancelados, promedios).
+Los mapas de calor usan una escala secuencial azul (sin rojo).</p></li>
+<li><p><strong>Navegación.</strong> Tres pestañas principales fijas al hacer scroll; el EDA y los modelos se dividen en subpestañas para evitar una
+página excesivamente larga. Diseño responsive.</p></li>
+<li><p><strong>Una sola métrica en el dashboard.</strong> El dashboard muestra únicamente el <strong>ROC-AUC</strong> (la métrica principal) con su IC 95 %, su valor en validación cruzada temporal y la comparación con el Dummy; el control de umbral muestra el porcentaje marcado como tardío y la matriz de confusión. Las demás métricas (Accuracy, Precision, Recall, F1, Balanced Accuracy, Average Precision y Brier) <strong>no cambian</strong> y siguen disponibles en las tablas de resultados y en los capítulos 11 y 15.</p></li>
+</ul>
+</section>
+<section id="indicadores-de-la-pestana-1">
+<h2>13.1 Indicadores de la pestaña 1<a class="headerlink" href="#indicadores-de-la-pestana-1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">contexto</span><span class="p">()</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">calidad</span><span class="p">()[</span><span class="s2">"variables"</span><span class="p">]</span>
+<span class="n">prueba</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">tabla</span><span class="p">(</span><span class="s2">"modelos_prueba.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"modelo"</span><span class="p">)</span>
+<span class="n">kpis</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">"Líneas de pedido"</span><span class="p">,</span> <span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">"lineas"</span><span class="p">],</span> <span class="mi">0</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">"Pedidos"</span><span class="p">,</span> <span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">"pedidos"</span><span class="p">],</span> <span class="mi">0</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">"Clientes"</span><span class="p">,</span> <span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">"clientes"</span><span class="p">],</span> <span class="mi">0</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">"Periodo"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">c</span><span class="p">[</span><span class="s1">'desde'</span><span class="p">]</span><span class="si">}</span><span class="s2"> a </span><span class="si">{</span><span class="n">c</span><span class="p">[</span><span class="s1">'hasta'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Prevalencia de entregas tardías (entrenamiento completo, con cancelados)"</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">pct</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">"tasa_tardia_train"</span><span class="p">])),</span>
+    <span class="p">(</span><span class="s2">"Prevalencia en la población de modelado"</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">pct</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">"tasa_tardia_modelado"</span><span class="p">])),</span>
+    <span class="p">(</span><span class="s2">"ROC-AUC del modelo base (prueba)"</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">num</span><span class="p">(</span><span class="n">prueba</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">F</span><span class="o">.</span><span class="n">MODELO_ELEGIDO</span><span class="p">,</span> <span class="s2">"ROC-AUC"</span><span class="p">])),</span>
+<span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"indicador principal"</span><span class="p">,</span> <span class="s2">"valor"</span><span class="p">])</span>
+<span class="n">contexto_extra</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">"Variables originales"</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="s2">"originales"</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s2">"Predictoras candidatas tras la auditoría (cap. 9)"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">q</span><span class="p">[</span><span class="s1">'candidatas_auditoria'</span><span class="p">]</span><span class="si">}</span><span class="s2">  (de </span><span class="si">{</span><span class="n">q</span><span class="p">[</span><span class="s1">'candidatas_originales'</span><span class="p">]</span><span class="si">}</span><span class="s2"> originales sin objetivo, fuga, ids ni datos personales)"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Líneas de entrenamiento (población de modelado)"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'modelado_train'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">  (</span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'modelado_pedidos_train'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> pedidos)"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Líneas de prueba (población de modelado)"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'modelado_test'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">  (</span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'modelado_pedidos_test'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> pedidos)"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Gap temporal entre entrenamiento y prueba"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">c</span><span class="p">[</span><span class="s1">'gap_dias'</span><span class="p">]</span><span class="si">}</span><span class="s2"> días"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Unidad de observación"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"línea de pedido (≈ </span><span class="si">{</span><span class="n">F</span><span class="o">.</span><span class="n">num</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">LINEAS_POR_PEDIDO</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> líneas por pedido, misma etiqueta)"</span><span class="p">),</span>
+<span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"indicador de contexto (añadido)"</span><span class="p">,</span> <span class="s2">"valor"</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">kpis</span><span class="p">);</span> <span class="n">display</span><span class="p">(</span><span class="n">contexto_extra</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>indicador principal</th>
+      <th>valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Líneas de pedido</td>
+      <td>180.519</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Pedidos</td>
+      <td>65.752</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Clientes</td>
+      <td>20.652</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Periodo</td>
+      <td>2015-01-01 a 2018-01-31</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Prevalencia de entregas tardías (entrenamiento completo, con cance...</td>
+      <td>54,9 %</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Prevalencia en la población de modelado</td>
+      <td>57,3 %</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>ROC-AUC del modelo base (prueba)</td>
+      <td>0,775</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>indicador de contexto (añadido)</th>
+      <th>valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Variables originales</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Predictoras candidatas tras la auditoría (cap. 9)</td>
+      <td>19  (de 32 originales sin objetivo, fuga, ids ni datos personales)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Líneas de entrenamiento (población de modelado)</td>
+      <td>137.043  (45.669 pedidos)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Líneas de prueba (población de modelado)</td>
+      <td>34.583  (16.850 pedidos)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Gap temporal entre entrenamiento y prueba</td>
+      <td>7 días</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Unidad de observación</td>
+      <td>línea de pedido (≈ 3,0 líneas por pedido, misma etiqueta)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">tabla</span><span class="p">(</span><span class="s2">"referencia_empirica.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">md_out</span><span class="p">(</span><span class="sa">f</span><span class="s2">"**Interpretación.** El volumen (</span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'lineas'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> líneas en </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'pedidos'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> pedidos de </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'clientes'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> clientes) supera "</span>
+       <span class="s2">"holgadamente el mínimo de 20.000 observaciones, pero el **tamaño efectivo** está más cerca del número de pedidos: todas las líneas de "</span>
+       <span class="s2">"un pedido comparten la etiqueta (sección 13.2). Más de la mitad de las líneas llega tarde "</span>
+       <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">F</span><span class="o">.</span><span class="n">pct</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'tasa_tardia_train'</span><span class="p">])</span><span class="si">}</span><span class="s2"> en el entrenamiento completo y </span><span class="si">{</span><span class="n">F</span><span class="o">.</span><span class="n">pct</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'tasa_tardia_modelado'</span><span class="p">])</span><span class="si">}</span><span class="s2"> en la población de modelado, sin cancelados), "</span>
+       <span class="s2">"así que el problema **no es de clase rara**: es un problema de **ordenar bien** qué líneas tienen más riesgo, lo que justifica el ROC-AUC como "</span>
+       <span class="sa">f</span><span class="s2">"métrica principal (sección 13.5). El último indicador resume el resultado: el modelo base alcanza un ROC-AUC de </span><span class="si">{</span><span class="n">F</span><span class="o">.</span><span class="n">num</span><span class="p">(</span><span class="n">prueba</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">F</span><span class="o">.</span><span class="n">MODELO_ELEGIDO</span><span class="p">,</span><span class="w"> </span><span class="s1">'ROC-AUC'</span><span class="p">])</span><span class="si">}</span><span class="s2"> "</span>
+       <span class="sa">f</span><span class="s2">"en la prueba, prácticamente igual a la referencia empírica sin fuga basada en modo × jornada (</span><span class="si">{</span><span class="n">F</span><span class="o">.</span><span class="n">num</span><span class="p">(</span><span class="n">ref</span><span class="p">[</span><span class="s1">'ROC-AUC'</span><span class="p">])</span><span class="si">}</span><span class="s2">). "</span>
+       <span class="s2">"Las tarjetas de contexto añadidas resumen en un vistazo la escala del problema (53 variables originales, "</span>
+       <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">q</span><span class="p">[</span><span class="s1">'candidatas_auditoria'</span><span class="p">]</span><span class="si">}</span><span class="s2"> candidatas tras la auditoría), el tamaño de cada conjunto y el gap temporal que protege contra la fuga entre entrenamiento y prueba."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p><strong>Interpretación.</strong> El volumen (180.519 líneas en 65.752 pedidos de 20.652 clientes) supera holgadamente el mínimo de 20.000 observaciones, pero el <strong>tamaño efectivo</strong> está más cerca del número de pedidos: todas las líneas de un pedido comparten la etiqueta (sección 13.2). Más de la mitad de las líneas llega tarde (54,9 % en el entrenamiento completo y 57,3 % en la población de modelado, sin cancelados), así que el problema <strong>no es de clase rara</strong>: es un problema de <strong>ordenar bien</strong> qué líneas tienen más riesgo, lo que justifica el ROC-AUC como métrica principal (sección 13.5). El último indicador resume el resultado: el modelo base alcanza un ROC-AUC de 0,775 en la prueba, prácticamente igual a la referencia empírica sin fuga basada en modo × jornada (0,775). Las tarjetas de contexto añadidas resumen en un vistazo la escala del problema (53 variables originales, 19 candidatas tras la auditoría), el tamaño de cada conjunto y el gap temporal que protege contra la fuga entre entrenamiento y prueba.</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">md_out</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""**Detalles que no aparecen en el dashboard.**</span>
+
+<span class="s2">- El indicador principal del dashboard es la prevalencia del **entrenamiento completo** (</span><span class="si">{</span><span class="n">F</span><span class="o">.</span><span class="n">pct</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'tasa_tardia_train'</span><span class="p">])</span><span class="si">}</span><span class="s2">). Aquí se separa de la prevalencia en la **población de modelado**</span>
+<span class="s2">  (</span><span class="si">{</span><span class="n">F</span><span class="o">.</span><span class="n">pct</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'tasa_tardia_modelado'</span><span class="p">])</span><span class="si">}</span><span class="s2">), que excluye las </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'train_lineas'</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="s1">'modelado_train'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> líneas canceladas o sospechosas de fraude del entrenamiento; la diferencia entre ambas cifras proviene solo de esa exclusión.</span>
+<span class="s2">- Tamaño de cada bloque (líneas): entrenamiento </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'train_lineas'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">, gap </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'gap_lineas'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">, prueba </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'test_lineas'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">; en la población de modelado, </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'modelado_train'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> y </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'modelado_test'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">.</span>
+<span class="s2">- La tabla de indicadores de contexto (variables originales, candidatas, gap) y el número de países de destino (</span><span class="si">{</span><span class="n">c</span><span class="p">[</span><span class="s1">'paises_destino'</span><span class="p">]</span><span class="si">}</span><span class="s2">) solo se detallan en este capítulo.</span>
+<span class="s2">"""</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p><strong>Detalles que no aparecen en el dashboard.</strong></p>
+<ul class="simple">
+<li><p>El indicador principal del dashboard es la prevalencia del <strong>entrenamiento completo</strong> (54,9 %). Aquí se separa de la prevalencia en la <strong>población de modelado</strong>
+(57,3 %), que excluye las 6.032 líneas canceladas o sospechosas de fraude del entrenamiento; la diferencia entre ambas cifras proviene solo de esa exclusión.</p></li>
+<li><p>Tamaño de cada bloque (líneas): entrenamiento 143.075, gap 1.222, prueba 36.222; en la población de modelado, 137.043 y 34.583.</p></li>
+<li><p>La tabla de indicadores de contexto (variables originales, candidatas, gap) y el número de países de destino (164) solo se detallan en este capítulo.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="pedido-vs-linea-de-pedido-el-nivel-de-analisis">
+<h2>13.2 Pedido vs línea de pedido: el nivel de análisis<a class="headerlink" href="#pedido-vs-linea-de-pedido-el-nivel-de-analisis" title="Link to this heading">#</a></h2>
+<p><strong>Decisión oficial del Entregable 1.</strong> La pregunta de investigación habla de «un pedido», pero el Entregable 1 define explícitamente
+la <strong>unidad de observación como una línea (ítem) de un pedido</strong> (capítulos 1 y 2), y todo el libro (partición, validación cruzada,
+modelo, métricas) trabaja a ese nivel. Por eso el dashboard <strong>conserva la metodología</strong> y corrige los textos para no hablar como si
+cada fila fuera un pedido independiente. No se cambió el modelo ni se pasó a una fila por <code class="docutils literal notranslate"><span class="pre">order_id</span></code>: eso alteraría el tamaño de
+muestra, los pliegues y todas las métricas del Entregable 1, y habría que documentarlo y regenerarlo todo. Dashboard y Jupyter Book
+usan el <strong>mismo nivel de análisis</strong>: la línea de pedido.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tam</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">TABLES</span> <span class="o">/</span> <span class="s2">"tamano_muestra.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"medida"</span><span class="p">)[</span><span class="s2">"valor"</span><span class="p">]</span>
+<span class="n">unidad</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">"Líneas de entrenamiento (con cancelados)"</span><span class="p">,</span> <span class="n">tam</span><span class="p">[</span><span class="s2">"Líneas (filas) de entrenamiento"</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s2">"Pedidos distintos en entrenamiento"</span><span class="p">,</span> <span class="n">tam</span><span class="p">[</span><span class="s2">"Pedidos distintos"</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s2">"Líneas por pedido (media; máx.)"</span><span class="p">,</span> <span class="n">tam</span><span class="p">[</span><span class="s2">"Líneas por pedido (media; máx.)"</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s2">"Pedidos con la misma etiqueta en todas sus líneas"</span><span class="p">,</span> <span class="n">tam</span><span class="p">[</span><span class="s2">"Pedidos con la misma etiqueta en todas sus líneas"</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s2">"Líneas por pedido en la población de modelado: entrenamiento"</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">num</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">"modelado_train"</span><span class="p">]</span> <span class="o">/</span> <span class="n">c</span><span class="p">[</span><span class="s2">"modelado_pedidos_train"</span><span class="p">],</span> <span class="mi">2</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">"Líneas por pedido en la población de modelado: prueba"</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">num</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">"modelado_test"</span><span class="p">]</span> <span class="o">/</span> <span class="n">c</span><span class="p">[</span><span class="s2">"modelado_pedidos_test"</span><span class="p">],</span> <span class="mi">2</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">"Pedidos compartidos entre entrenamiento y prueba (recomprobado en preparar_datos.py)"</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">calidad</span><span class="p">()[</span><span class="s2">"integridad"</span><span class="p">][</span><span class="s2">"pedidos_compartidos_train_test"</span><span class="p">]),</span>
+<span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"medida"</span><span class="p">,</span> <span class="s2">"valor"</span><span class="p">])</span>
+<span class="n">unidad</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>medida</th>
+      <th>valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Líneas de entrenamiento (con cancelados)</td>
+      <td>143.075</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Pedidos distintos en entrenamiento</td>
+      <td>47.719</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Líneas por pedido (media; máx.)</td>
+      <td>3,00; 5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Pedidos con la misma etiqueta en todas sus líneas</td>
+      <td>100,0 %</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Líneas por pedido en la población de modelado: entrenamiento</td>
+      <td>3,00</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Líneas por pedido en la población de modelado: prueba</td>
+      <td>2,05</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Pedidos compartidos entre entrenamiento y prueba (recomprobado en ...</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Consecuencias de trabajar a nivel de línea</strong> (y cómo se manejan):</p>
+<ol class="arabic simple">
+<li><p><strong>La etiqueta es la misma para todas las líneas de un pedido</strong> (100 % de los pedidos), de modo que la respuesta a «¿llegará tarde el pedido?» es la
+predicción de sus líneas. El modelo usa solo modo de envío y jornada, que son iguales en todas las líneas de un pedido.</p></li>
+<li><p><strong>Ningún pedido queda dividido entre entrenamiento y prueba</strong>: la partición es cronológica por fecha del pedido y el código vuelve a
+comprobarlo (pedidos compartidos = 0).</p></li>
+<li><p><strong>Los intervalos de confianza se obtienen remuestreando pedidos</strong> (<code class="docutils literal notranslate"><span class="pre">order_id</span></code>), no líneas: remuestrear líneas trataría como independientes
+observaciones que comparten etiqueta y daría intervalos demasiado estrechos.</p></li>
+<li><p><strong>Las métricas pesan cada línea</strong>, así que un pedido con más líneas pesa más en Accuracy, Precision, Recall, etc. Desde octubre de 2017 cada pedido
+tiene una sola línea (capítulo 7), por lo que la prueba mezcla dos regímenes; el desempeño por periodo (capítulo 15) muestra que no cambia.</p></li>
+<li><p><strong>El tamaño efectivo</strong> de muestra está más cerca del número de pedidos que del de líneas.
+Un análisis a nivel de pedido (una fila por <code class="docutils literal notranslate"><span class="pre">order_id</span></code>) queda como extensión posible, no como parte de este entregable.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">md_out</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""**Interpretación.** El dashboard resume la unidad como «línea de pedido, ≈ </span><span class="si">{</span><span class="n">F</span><span class="o">.</span><span class="n">num</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">LINEAS_POR_PEDIDO</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> líneas por pedido, misma etiqueta». La consecuencia práctica es que los</span>
+<span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'modelado_train'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> registros de entrenamiento provienen de solo </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'modelado_pedidos_train'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> pedidos: el tamaño efectivo de la muestra está más cerca del número de pedidos que del de líneas,</span>
+<span class="s2">y por eso los intervalos de confianza se obtienen remuestreando pedidos.</span>
+
+<span class="s2">**Detalles que no aparecen en el dashboard.** La tabla de arriba (pedidos con la misma etiqueta en todas sus líneas, líneas por pedido en cada conjunto, pedidos compartidos entre entrenamiento y prueba = 0)</span>
+<span class="s2">y las cinco consecuencias de trabajar a nivel de línea."""</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p><strong>Interpretación.</strong> El dashboard resume la unidad como «línea de pedido, ≈ 3,0 líneas por pedido, misma etiqueta». La consecuencia práctica es que los
+137.043 registros de entrenamiento provienen de solo 45.669 pedidos: el tamaño efectivo de la muestra está más cerca del número de pedidos que del de líneas,
+y por eso los intervalos de confianza se obtienen remuestreando pedidos.</p>
+<p><strong>Detalles que no aparecen en el dashboard.</strong> La tabla de arriba (pedidos con la misma etiqueta en todas sus líneas, líneas por pedido en cada conjunto, pedidos compartidos entre entrenamiento y prueba = 0)
+y las cinco consecuencias de trabajar a nivel de línea.</p>
+</div>
+</div>
+</section>
+<section id="problema-importancia-y-pregunta">
+<h2>13.3 Problema, importancia y pregunta<a class="headerlink" href="#problema-importancia-y-pregunta" title="Link to this heading">#</a></h2>
+<p>El texto que muestra la pestaña:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">md_out</span><span class="p">(</span><span class="s2">"&gt; "</span> <span class="o">+</span> <span class="n">T</span><span class="o">.</span><span class="n">PROBLEMA</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">&gt; **Pregunta:** "</span> <span class="o">+</span> <span class="n">T</span><span class="o">.</span><span class="n">PREGUNTA</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">&gt; **Unidad:** "</span> <span class="o">+</span> <span class="n">T</span><span class="o">.</span><span class="n">UNIDAD</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<blockquote>
+<div><p>DataCo Global vende artículos deportivos, ropa y electrónica a 164 países. Una parte importante de sus entregas llega después de la fecha prometida. Las entregas tardías deterioran la satisfacción y la retención de clientes, generan reclamos, devoluciones y penalizaciones, y obligan a reprogramar transporte e inventario con sobrecostos. Predecir el riesgo de retraso <strong>en el momento de la compra</strong> permite intervenir antes del despacho (cambiar el modo de envío, priorizar pedidos o ajustar la fecha prometida) en lugar de reaccionar cuando el daño ya ocurrió.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Pregunta:</strong> ¿Es posible predecir, al crear un pedido y solo con información disponible en ese instante, si su entrega llegará tarde respecto al plazo prometido?</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Unidad:</strong> <strong>Unidad de observación: la línea de pedido</strong> (un producto dentro de un pedido), no el pedido completo. Un pedido puede tener varias líneas (3,0 en promedio en el entrenamiento) y <strong>todas las líneas de un pedido comparten la misma etiqueta</strong>, así que la respuesta para un pedido es la de sus líneas. El modelado, la validación y las métricas son a nivel de línea; la partición cronológica deja cada pedido completo en un solo conjunto (pedidos compartidos entre entrenamiento y prueba: 0) y los intervalos de confianza se obtienen remuestreando <strong>pedidos</strong> (<code class="docutils literal notranslate"><span class="pre">order_id</span></code>), no líneas.</p>
+</div></blockquote>
+</div>
+</div>
+<p><strong>Por qué es relevante usar ML con esta información.</strong> La empresa ya registra, al momento de la
+compra, el modo de envío, la promesa de días, el producto, el cliente, el destino y la hora. Si
+con esos datos se puede <strong>anticipar</strong> el retraso, la intervención (cambiar el modo de envío,
+priorizar el despacho, ajustar la fecha prometida o avisar al cliente) ocurre <strong>antes</strong> de que el
+retraso suceda y su costo se materialice. Además, identificar qué condiciones generan los retrasos
+permite corregir <strong>políticas</strong> (por ejemplo, promesas poco realistas), no solo casos individuales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">md_out</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""**Interpretación.** El problema se plantea como anticipar, al crear el pedido, si la línea llegará después de la fecha prometida. Con una prevalencia de </span><span class="si">{</span><span class="n">F</span><span class="o">.</span><span class="n">pct</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'tasa_tardia_train'</span><span class="p">])</span><span class="si">}</span><span class="s2"> en el entrenamiento,</span>
+<span class="s2">no es un problema de clase rara: lo útil es **ordenar** las líneas por riesgo, y por eso el dashboard presenta la tasa como indicador principal y la pregunta de investigación como guía de todo lo demás.</span>
+
+<span class="s2">**Detalles que no aparecen en el dashboard.** El texto completo del problema y de la unidad (citas de arriba), el argumento de por qué usar aprendizaje automático con la información disponible al comprar, y una limitación:</span>
+<span class="s2">el beneficio de intervenir antes (cambiar el modo de envío, priorizar el despacho, avisar al cliente) es una **hipótesis operativa**; en este entregable no se estimó el costo de un retraso ni el de una intervención."""</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p><strong>Interpretación.</strong> El problema se plantea como anticipar, al crear el pedido, si la línea llegará después de la fecha prometida. Con una prevalencia de 54,9 % en el entrenamiento,
+no es un problema de clase rara: lo útil es <strong>ordenar</strong> las líneas por riesgo, y por eso el dashboard presenta la tasa como indicador principal y la pregunta de investigación como guía de todo lo demás.</p>
+<p><strong>Detalles que no aparecen en el dashboard.</strong> El texto completo del problema y de la unidad (citas de arriba), el argumento de por qué usar aprendizaje automático con la información disponible al comprar, y una limitación:
+el beneficio de intervenir antes (cambiar el modo de envío, priorizar el despacho, avisar al cliente) es una <strong>hipótesis operativa</strong>; en este entregable no se estimó el costo de un retraso ni el de una intervención.</p>
+</div>
+</div>
+</section>
+<section id="definicion-de-la-variable-objetivo-corregida">
+<h2>13.4 Definición de la variable objetivo (corregida)<a class="headerlink" href="#definicion-de-la-variable-objetivo-corregida" title="Link to this heading">#</a></h2>
+<p>La versión anterior simplificaba: «<code class="docutils literal notranslate"><span class="pre">Late_delivery_risk</span></code> = 1 si días reales &gt; días programados; 0 si llega temprano o a tiempo». Eso <strong>no es exacto en
+el dataset original</strong>: los pedidos cancelados o sospechosos de fraude tienen etiqueta 0 aunque nunca se entregaron, es decir, no son entregas puntuales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">md_out</span><span class="p">(</span><span class="s2">"&gt; "</span> <span class="o">+</span> <span class="n">T</span><span class="o">.</span><span class="n">OBJETIVO</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">tabla</span><span class="p">(</span><span class="s2">"objetivo_por_estado.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"delivery_status"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"late_delivery_risk"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">"lineas"</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Late_delivery_risk = 0"</span><span class="p">,</span> <span class="s2">"Late_delivery_risk = 1"</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">inc</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">calidad</span><span class="p">()[</span><span class="s2">"inconsistencias"</span><span class="p">]</span>
+<span class="n">md_out</span><span class="p">(</span><span class="sa">f</span><span class="s2">"En el entrenamiento hay **</span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">inc</span><span class="p">[</span><span class="s1">'lineas_tardias_por_dias_con_etiqueta_0'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> líneas** con días reales &gt; días programados y etiqueta 0: todas son «Shipping canceled» "</span>
+       <span class="s2">"(pedidos CANCELED o SUSPECTED_FRAUD, capítulo 2). Por eso la definición válida es la de la **población de modelado**: tras excluir los cancelados/fraude, "</span>
+       <span class="s2">"1 = entrega tardía y 0 = entrega no tardía (adelantada o a tiempo). La figura de la pestaña EDA muestra los cancelados en gris, separados del 0 «no tardía»."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<blockquote>
+<div><p>En la población de modelado, tras excluir los pedidos cancelados o sospechosos de fraude, <code class="docutils literal notranslate"><span class="pre">Late_delivery_risk</span></code> = 1 identifica una entrega tardía (días reales &gt; días programados) y 0 una entrega no tardía (adelantada o a tiempo). En el dataset original, los pedidos cancelados o sospechosos de fraude tienen etiqueta 0 aunque <strong>no</strong> representan una entrega puntual (nunca se entregaron): por eso se excluyen (6.032 líneas del entrenamiento) y no se interpretan como entregas a tiempo.</p>
+</div></blockquote>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Late_delivery_risk = 0</th>
+      <th>Late_delivery_risk = 1</th>
+    </tr>
+    <tr>
+      <th>delivery_status</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Advance shipping</th>
+      <td>32954</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Late delivery</th>
+      <td>0</td>
+      <td>78549</td>
+    </tr>
+    <tr>
+      <th>Shipping canceled</th>
+      <td>6032</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Shipping on time</th>
+      <td>25540</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><p>En el entrenamiento hay <strong>3.362 líneas</strong> con días reales &gt; días programados y etiqueta 0: todas son «Shipping canceled» (pedidos CANCELED o SUSPECTED_FRAUD, capítulo 2). Por eso la definición válida es la de la <strong>población de modelado</strong>: tras excluir los cancelados/fraude, 1 = entrega tardía y 0 = entrega no tardía (adelantada o a tiempo). La figura de la pestaña EDA muestra los cancelados en gris, separados del 0 «no tardía».</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">md_out</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""**Interpretación.** En el dashboard la variable objetivo se muestra con sus dos clases y una alerta: las etiquetas 0 de los cancelados y sospechosos de fraude **no son entregas a tiempo**. En el entrenamiento hay</span>
+<span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">inc</span><span class="p">[</span><span class="s1">'lineas_tardias_por_dias_con_etiqueta_0'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> líneas con días reales &gt; programados y etiqueta 0, todas «Shipping canceled»; por eso la definición válida del 0 («no tardía») rige solo para la población de modelado,</span>
+<span class="s2">que excluye </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">'train_lineas'</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="s1">'modelado_train'</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> líneas del entrenamiento.</span>
+
+<span class="s2">**Detalles que no aparecen en el dashboard.** La tabla cruzada de estado de entrega × etiqueta (arriba), el conteo exacto de líneas con etiqueta inconsistente y la explicación de por qué la definición simplificada del Entregable 1</span>
+<span class="s2">(«0 = temprano o a tiempo») no es exacta en el dataset original."""</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p><strong>Interpretación.</strong> En el dashboard la variable objetivo se muestra con sus dos clases y una alerta: las etiquetas 0 de los cancelados y sospechosos de fraude <strong>no son entregas a tiempo</strong>. En el entrenamiento hay
+3.362 líneas con días reales &gt; programados y etiqueta 0, todas «Shipping canceled»; por eso la definición válida del 0 («no tardía») rige solo para la población de modelado,
+que excluye 6.032 líneas del entrenamiento.</p>
+<p><strong>Detalles que no aparecen en el dashboard.</strong> La tabla cruzada de estado de entrega × etiqueta (arriba), el conteo exacto de líneas con etiqueta inconsistente y la explicación de por qué la definición simplificada del Entregable 1
+(«0 = temprano o a tiempo») no es exacta en el dataset original.</p>
+</div>
+</div>
+</section>
+<section id="metrica-elegida-metricas-complementarias-y-lenguaje-de-referencia">
+<h2>13.5 Métrica elegida, métricas complementarias y lenguaje de referencia<a class="headerlink" href="#metrica-elegida-metricas-complementarias-y-lenguaje-de-referencia" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">md_out</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">METRICA</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">T</span><span class="o">.</span><span class="n">SIN_FUGA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p><strong>Métrica principal: ROC-AUC.</strong> Mide la capacidad de ordenar las líneas por riesgo (el uso previsto), no depende del umbral de decisión y las clases están casi balanceadas (≈ 57 % tardías en la población de modelado). Sirve también para detectar fuga: el Dummy vale 0,5, la referencia empírica sin fuga ≈ 0,775 y con fuga se llega a ≈ 0,975. Accuracy, Precision, Recall, F1, Balanced Accuracy, Average Precision y Brier son métricas complementarias; las que dependen del umbral se reportan con el umbral 0,50 fijado de antemano.</p>
+<p><strong>Versión sin fuga.</strong> Se excluyen las variables que solo se conocen después del despacho: días reales de envío, estado de la entrega, estado del pedido y fecha de despacho.</p>
+</div>
+</div>
+<p>La justificación completa de la métrica principal (sensibilidad al umbral, comparación con accuracy y F1) está en el capítulo 12.
+<strong>Actualización para el Entregable 2:</strong> el capítulo 12 descartó <em>Precision</em> como métrica de <strong>reporte principal</strong>; en esta versión se <strong>añade como
+métrica complementaria</strong> (junto con <em>Balanced Accuracy</em>) porque ayuda a leer el efecto del umbral y a interpretar la curva Precision–Recall. El ROC-AUC sigue
+siendo la métrica principal y el Accuracy nunca lo es.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glosario</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">T</span><span class="o">.</span><span class="n">TOOLTIPS</span><span class="o">.</span><span class="n">items</span><span class="p">()],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"métrica"</span><span class="p">,</span> <span class="s2">"qué mide"</span><span class="p">])</span>
+<span class="n">glosario</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>métrica</th>
+      <th>qué mide</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ROC-AUC</td>
+      <td>Probabilidad de que una línea tardía reciba un puntaje mayor que u...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Accuracy</td>
+      <td>Proporción de aciertos con el umbral fijado. Engañosa cuando una c...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Precision</td>
+      <td>De las líneas marcadas como tardías, ¿qué fracción realmente lo es...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Recall</td>
+      <td>De las líneas realmente tardías, ¿qué fracción se detecta? TP / (T...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>F1</td>
+      <td>Media armónica de Precision y Recall. Depende del umbral y de la p...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Balanced Accuracy</td>
+      <td>Promedio de Recall y especificidad: el Dummy vale 0,5 sin importar...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Average Precision</td>
+      <td>Área bajo la curva Precision–Recall (resume Precision a distintos ...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Brier</td>
+      <td>Error cuadrático medio de las probabilidades (menor es mejor). Mid...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>ROC-AUC CV temporal</td>
+      <td>ROC-AUC medio de la validación cruzada temporal del entrenamiento ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Precision</strong> = TP / (TP + FP): de las líneas que el modelo marca como tardías, qué fracción realmente lo es. Complementa al <strong>Recall</strong> (TP / (TP + FN)).
+Como la clase positiva (tardía) es la mayoritaria, un clasificador que marca todo ya tiene Precision igual a la prevalencia; por eso se interpreta junto con
+el Recall y con la curva Precision–Recall, no sola. <strong>Balanced Accuracy</strong> = (Recall + especificidad) / 2: vale 0,5 para cualquier clasificador sin información,
+sin importar la prevalencia, lo que la hace más honesta que el Accuracy. Ambas dependen del umbral (0,50, fijado de antemano). Sus IC 95 % se calculan con el mismo bootstrap por pedido.</p>
+<p><strong>Cambio de lenguaje: «referencia empírica», no «techo».</strong> Las versiones anteriores hablaban de «techo sin fuga», «techo alcanzable» y «no queda más señal por extraer».
+Eso afirma más de lo demostrado. Lo que se observa es que la <strong>tabla de tasas por modo × jornada</strong> (calculada en entrenamiento y evaluada en la prueba) alcanza un ROC-AUC
+prácticamente igual al de la regresión logística con la misma interacción; con las variables y relaciones evaluadas no se encontró señal adicional, pero no se demuestra que ningún
+otro modelo pueda superarla. Por eso el dashboard habla de <strong>referencia empírica sin fuga</strong> o <strong>benchmark empírico observado con la información disponible</strong>. (Los capítulos 9–12 del Entregable 1 conservan su redacción original;
+los archivos <code class="docutils literal notranslate"><span class="pre">techo_sin_fuga.csv</span></code> siguen con ese nombre para no romper el libro.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pr_</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">tabla</span><span class="p">(</span><span class="s2">"modelos_prueba.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"modelo"</span><span class="p">)</span>
+<span class="n">dm</span><span class="p">,</span> <span class="n">el_</span> <span class="o">=</span> <span class="n">pr_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">F</span><span class="o">.</span><span class="n">MODELO_DUMMY</span><span class="p">],</span> <span class="n">pr_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">F</span><span class="o">.</span><span class="n">MODELO_ELEGIDO</span><span class="p">]</span>
+<span class="n">md_out</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""**Interpretación.** El dashboard presenta como única métrica el **ROC-AUC**: ordena las líneas por riesgo, no depende del umbral y no se infla por la clase mayoritaria. El Dummy lo muestra: con solo marcar todo como tardío alcanza</span>
+<span class="s2">un Accuracy de </span><span class="si">{</span><span class="n">F</span><span class="o">.</span><span class="n">num</span><span class="p">(</span><span class="n">dm</span><span class="p">[</span><span class="s1">'Accuracy'</span><span class="p">])</span><span class="si">}</span><span class="s2"> pero un ROC-AUC de </span><span class="si">{</span><span class="n">F</span><span class="o">.</span><span class="n">num</span><span class="p">(</span><span class="n">dm</span><span class="p">[</span><span class="s1">'ROC-AUC'</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">; el modelo elegido llega a </span><span class="si">{</span><span class="n">F</span><span class="o">.</span><span class="n">num</span><span class="p">(</span><span class="n">el_</span><span class="p">[</span><span class="s1">'ROC-AUC'</span><span class="p">])</span><span class="si">}</span><span class="s2">. Por eso Accuracy, F1 y Recall no son la métrica principal.</span>
+
+<span class="s2">**Detalles que no aparecen en el dashboard.** Las métricas complementarias (Accuracy, Precision, Recall, F1, Balanced Accuracy, Average Precision y Brier, con sus IC 95 %) **se conservan en este informe** (capítulo 15) pero se retiraron del dashboard</span>
+<span class="s2">para no competir con la métrica principal. También quedan aquí el glosario de métricas, la justificación completa de la elección (capítulo 12) y el cambio de lenguaje «referencia empírica» en lugar de «techo»."""</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p><strong>Interpretación.</strong> El dashboard presenta como única métrica el <strong>ROC-AUC</strong>: ordena las líneas por riesgo, no depende del umbral y no se infla por la clase mayoritaria. El Dummy lo muestra: con solo marcar todo como tardío alcanza
+un Accuracy de 0,573 pero un ROC-AUC de 0,5; el modelo elegido llega a 0,775. Por eso Accuracy, F1 y Recall no son la métrica principal.</p>
+<p><strong>Detalles que no aparecen en el dashboard.</strong> Las métricas complementarias (Accuracy, Precision, Recall, F1, Balanced Accuracy, Average Precision y Brier, con sus IC 95 %) <strong>se conservan en este informe</strong> (capítulo 15) pero se retiraron del dashboard
+para no competir con la métrica principal. También quedan aquí el glosario de métricas, la justificación completa de la elección (capítulo 12) y el cambio de lenguaje «referencia empírica» en lugar de «techo».</p>
+</div>
+</div>
+</section>
+<section id="particion-cronologica">
+<h2>13.6 Partición cronológica<a class="headerlink" href="#particion-cronologica" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mostrar</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">fig_particion</span><span class="p">())</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">tabla</span><span class="p">(</span><span class="s2">"volumen_semanal.csv"</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"conjunto"</span><span class="p">)[</span><span class="s2">"lineas"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">md_out</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Líneas por conjunto: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v_</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">"."</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v_</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="o">+</span> <span class="s2">"."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>                <div id="f6dbf518-0adb-4dba-a5a2-85323c301714" class="plotly-graph-div" style="height:330px; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("f6dbf518-0adb-4dba-a5a2-85323c301714")) {                    Plotly.newPlot(                        "f6dbf518-0adb-4dba-a5a2-85323c301714",                        [{"hovertemplate":"Semana %{x|%d-%b-%Y}\u003cbr\u003e%{y:,} l\u00edneas\u003cextra\u003eEntrenamiento\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","line":{"width":0}},"name":"Entrenamiento","x":["2014-12-29","2015-01-05","2015-01-12","2015-01-19","2015-01-26","2015-02-02","2015-02-09","2015-02-16","2015-02-23","2015-03-02","2015-03-09","2015-03-16","2015-03-23","2015-03-30","2015-04-06","2015-04-13","2015-04-20","2015-04-27","2015-05-04","2015-05-11","2015-05-18","2015-05-25","2015-06-01","2015-06-08","2015-06-15","2015-06-22","2015-06-29","2015-07-06","2015-07-13","2015-07-20","2015-07-27","2015-08-03","2015-08-10","2015-08-17","2015-08-24","2015-08-31","2015-09-07","2015-09-14","2015-09-21","2015-09-28","2015-10-05","2015-10-12","2015-10-19","2015-10-26","2015-11-02","2015-11-09","2015-11-16","2015-11-23","2015-11-30","2015-12-07","2015-12-14","2015-12-21","2015-12-28","2016-01-04","2016-01-11","2016-01-18","2016-01-25","2016-02-01","2016-02-08","2016-02-15","2016-02-22","2016-02-29","2016-03-07","2016-03-14","2016-03-21","2016-03-28","2016-04-04","2016-04-11","2016-04-18","2016-04-25","2016-05-02","2016-05-09","2016-05-16","2016-05-23","2016-05-30","2016-06-06","2016-06-13","2016-06-20","2016-06-27","2016-07-04","2016-07-11","2016-07-18","2016-07-25","2016-08-01","2016-08-08","2016-08-15","2016-08-22","2016-08-29","2016-09-05","2016-09-12","2016-09-19","2016-09-26","2016-10-03","2016-10-10","2016-10-17","2016-10-24","2016-10-31","2016-11-07","2016-11-14","2016-11-21","2016-11-28","2016-12-05","2016-12-12","2016-12-19","2016-12-26","2017-01-02","2017-01-09","2017-01-16","2017-01-23","2017-01-30","2017-02-06","2017-02-13","2017-02-20","2017-02-27","2017-03-06","2017-03-13","2017-03-20","2017-03-27","2017-04-03","2017-04-10"],"y":[692,1163,1208,1205,1235,1193,1151,1188,1214,1256,1173,1170,1178,1248,1229,1228,1130,1184,1170,1204,1206,1271,1187,1182,1207,1166,1243,1203,1244,1171,1180,1189,1181,1167,1205,1242,1180,1178,1220,1207,1181,1201,1138,1233,1252,1200,1247,1196,1222,1166,1181,1284,1234,1149,1174,1229,1232,1156,1144,1225,1184,1209,1142,1188,1178,1196,1194,1240,1229,1082,1139,1261,1206,1166,1195,1183,1150,1215,1200,1199,1204,1193,1184,1182,1176,1242,1194,1209,1194,1277,1184,1201,1131,1257,1229,1250,1201,1226,1188,1227,1219,1193,1179,1165,1188,1176,1196,1194,1174,1250,1187,1181,1275,1222,1214,1213,1157,1232,1221,842],"type":"bar"},{"hovertemplate":"Semana %{x|%d-%b-%Y}\u003cbr\u003e%{y:,} l\u00edneas\u003cextra\u003eGap (descartado)\u003c\u002fextra\u003e","marker":{"color":"#9a9893","line":{"width":0}},"name":"Gap (descartado)","x":["2017-04-10","2017-04-17"],"y":[346,876],"type":"bar"},{"hovertemplate":"Semana %{x|%d-%b-%Y}\u003cbr\u003e%{y:,} l\u00edneas\u003cextra\u003ePrueba\u003c\u002fextra\u003e","marker":{"color":"#eb6834","line":{"width":0}},"name":"Prueba","x":["2017-04-17","2017-04-24","2017-05-01","2017-05-08","2017-05-15","2017-05-22","2017-05-29","2017-06-05","2017-06-12","2017-06-19","2017-06-26","2017-07-03","2017-07-10","2017-07-17","2017-07-24","2017-07-31","2017-08-07","2017-08-14","2017-08-21","2017-08-28","2017-09-04","2017-09-11","2017-09-18","2017-09-25","2017-10-02","2017-10-09","2017-10-16","2017-10-23","2017-10-30","2017-11-06","2017-11-13","2017-11-20","2017-11-27","2017-12-04","2017-12-11","2017-12-18","2017-12-25","2018-01-01","2018-01-08","2018-01-15","2018-01-22","2018-01-29"],"y":[367,1218,1245,1187,1164,1178,1252,1124,1109,1207,1187,1208,1163,1241,1157,1196,1185,1177,1250,1197,1181,1244,1190,1203,515,479,480,479,480,479,480,479,480,479,480,479,480,479,480,479,480,205],"type":"bar"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"shapes":[{"line":{"color":"#52514e","dash":"dot"},"type":"line","x0":"2017-04-22","x1":"2017-04-22","xref":"x","y0":0,"y1":1,"yref":"y domain"}],"annotations":[{"font":{"color":"#52514e","size":11},"showarrow":false,"text":"inicio de la prueba","x":"2017-04-22","xanchor":"left","y":1.0,"yref":"paper"}],"barmode":"stack","bargap":0.05,"xaxis":{"title":{},"gridcolor":"#e7e6e2","zeroline":false,"linecolor":"#e7e6e2"},"yaxis":{"title":{"text":"l\u00edneas de pedido por semana"},"gridcolor":"#e7e6e2","zeroline":false,"linecolor":"#e7e6e2"},"title":{"font":{"size":15,"color":"#0b0b0b"},"text":"Partici\u00f3n cronol\u00f3gica: entrenamiento, gap de 7 d\u00edas y prueba","x":0.0,"xanchor":"left"},"margin":{"l":60,"r":20,"t":60,"b":50},"font":{"family":"Inter, Segoe UI, Arial, sans-serif","size":12,"color":"#52514e"},"hoverlabel":{"font":{"size":12},"bgcolor":"white"},"height":330,"paper_bgcolor":"#fcfcfb","plot_bgcolor":"#fcfcfb","legend":{"orientation":"h","yanchor":"bottom","y":1.0,"xanchor":"right","x":1.0,"title":{}}},                        {"displaylogo": false, "responsive": true}                    )                };                            </script>        </div></div><p>Líneas por conjunto: Entrenamiento: 143.075, Gap (descartado): 1.222, Prueba: 36.222.</p>
+</div>
+</div>
+<p><strong>Interpretación.</strong> El volumen semanal es casi constante (≈ 1.200 líneas por semana) hasta
+septiembre de 2017. Desde octubre de 2017 cae a menos de la mitad: cada pedido pasa a tener una
+sola línea (cambio de régimen descrito en el capítulo 7). Ese periodo queda dentro de la prueba,
+lo que convierte la evaluación en una prueba exigente de <strong>generalización a un régimen nuevo</strong>.
+La franja gris (gap de 7 días) separa entrenamiento y prueba porque la etiqueta de un pedido se
+conoce hasta 6 días después de comprarlo (<code class="docutils literal notranslate"><span class="pre">days_shipping_real</span></code> ≤ 6).</p>
+<p><strong>Detalles que no aparecen en el dashboard.</strong></p>
+<ul class="simple">
+<li><p>La partición se calcula una vez y se guarda en <code class="docutils literal notranslate"><span class="pre">tables/particion_pedidos.csv</span></code>; el dashboard la
+lee ya hecha.</p></li>
+<li><p>La figura usa <strong>solo el volumen</strong> (sin etiquetas) en la prueba: mostrar la tasa de retraso de la
+prueba en la pestaña de contexto sería mirar el resultado antes de evaluar.</p></li>
+<li><p>La población de modelado excluye 6.032 líneas canceladas o sospechosas de fraude del
+entrenamiento (y las equivalentes de la prueba); el EDA las conserva para describirlas.</p></li>
+</ul>
+</section>
+<section id="verificacion-de-consistencia-dashboard-libro">
+<h2>13.7 Verificación de consistencia dashboard ↔ libro<a class="headerlink" href="#verificacion-de-consistencia-dashboard-libro" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">dashboard/verificar_consistencia.py</span></code> compara las cifras del dashboard con las tablas del libro (capítulos 2, 9 y 11) y comprueba las reglas metodológicas (umbral con OOF, pedidos compartidos = 0, calibración sin partir empates):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">project_root</span> <span class="o">/</span> <span class="s2">"dashboard"</span><span class="p">))</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">verificar_consistencia</span><span class="w"> </span><span class="kn">import</span> <span class="n">verificar</span>
+<span class="n">vc</span> <span class="o">=</span> <span class="n">verificar</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">vc</span><span class="p">)</span>
+<span class="k">assert</span> <span class="p">(</span><span class="n">vc</span><span class="p">[</span><span class="s2">"resultado"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"OK"</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">"Hay cifras que no coinciden entre el dashboard y el libro"</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>comprobación</th>
+      <th>resultado</th>
+      <th>detalle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Métricas en la prueba de «Logística modo × jornada» = capítulo 11</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Métricas en la prueba de «Dummy — clase mayoritaria / prior» = cap...</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Referencia empírica (prueba) = capítulo 11 (Accuracy, Recall, F1, ...</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>IC 95 % de «Regresión logística» = capítulo 11 (6 métricas)</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>IC 95 % de «Dummy» = capítulo 11 (6 métricas)</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ROC-AUC CV temporal del modelo elegido = capítulo 11</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Estimaciones de modelos_ic.csv = modelos_prueba.csv (8 métricas, i...</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Precision y Balanced Accuracy de la tabla = recalculadas desde pre...</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Líneas y pedidos de entrenamiento = capítulo 2 (tamano_muestra.csv)</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Variables originales = 53 (diccionario) y candidatas = auditoría d...</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Pedidos compartidos entre entrenamiento y prueba = 0</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Pedidos de la prueba (predicciones) = contexto.json</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Tablas copiadas del libro (fuga, curva de aprendizaje, selección, ...</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>OOF: todas las fechas son anteriores al gap (no se mezcla con la p...</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>metricas_umbral() usa OOF por defecto (n = líneas OOF, no las de l...</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>ROC-AUC no depende del umbral</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Umbral final fijado de antemano = 0,50</td>
+      <td>OK</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Calibración: una probabilidad única = un grupo (no se parten empat...</td>
+      <td>OK</td>
+      <td>Logística aditiva (modo + hora): 93 probabilidades únicas → 10 gru...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="registro-de-cambios-de-esta-version">
+<h2>13.8 Registro de cambios de esta versión<a class="headerlink" href="#registro-de-cambios-de-esta-version" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tema</p></th>
+<th class="head"><p>Antes</p></th>
+<th class="head"><p>Ahora</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Unidad de análisis</p></td>
+<td><p>«pedido» en la pregunta, «línea» en la unidad</p></td>
+<td><p>Explícito: nivel de línea; IC por <code class="docutils literal notranslate"><span class="pre">order_id</span></code>; sin cambiar el modelo (13.2)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Definición del objetivo</p></td>
+<td><p>«0 = temprano o a tiempo»</p></td>
+<td><p>0 = no tardía <strong>en la población de modelado</strong>; cancelados/fraude excluidos y mostrados aparte (13.4)</p></td>
+</tr>
+<tr class="row-even"><td><p>«Techo sin fuga»</p></td>
+<td><p>afirmación absoluta</p></td>
+<td><p>«Referencia empírica sin fuga»; sin afirmar un máximo demostrado (13.5)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Métricas</p></td>
+<td><p>Accuracy, Recall, F1, ROC-AUC, AP, Brier</p></td>
+<td><p>+ <strong>Precision</strong> y <strong>Balanced Accuracy</strong> (con IC 95 % por bootstrap de pedidos)</p></td>
+</tr>
+<tr class="row-even"><td><p>IC 95 %</p></td>
+<td><p>bootstrap con 500 remuestreos (ROC-AUC 0,766–0,782)</p></td>
+<td><p>1.000 remuestreos, como en el capítulo 11: los IC coinciden exactamente con <code class="docutils literal notranslate"><span class="pre">tables/intervalos_bootstrap_*.csv</span></code> (ROC-AUC 0,767–0,783)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dummy</p></td>
+<td><p>«Dummy (prior)»</p></td>
+<td><p>«Dummy — clase mayoritaria / prior», con explicación de su Recall = 1 y su F1 alto</p></td>
+</tr>
+<tr class="row-even"><td><p>Umbral</p></td>
+<td><p>el deslizador usaba las predicciones de la <strong>prueba</strong></p></td>
+<td><p>usa predicciones <strong>OOF del entrenamiento</strong>; la prueba se evalúa aparte con el umbral 0,50 fijado de antemano</p></td>
+</tr>
+<tr class="row-odd"><td><p>Calibración</p></td>
+<td><p>deciles por rango (partían empates)</p></td>
+<td><p>un punto por probabilidad única (modo × jornada) o deciles que preservan empates (aditivo); n en el hover</p></td>
+</tr>
+<tr class="row-even"><td><p>Curva Precision–Recall</p></td>
+<td><p>no existía</p></td>
+<td><p>calculada (capítulo 15 y <code class="docutils literal notranslate"><span class="pre">figuras.fig_pr</span></code>), pero el dashboard muestra solo la curva ROC</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pestaña de contexto</p></td>
+<td><p>una sola página con 12 indicadores y 5 tarjetas de texto, mezclando entrenamiento y prueba</p></td>
+<td><p>4 subpestañas: Resumen (4 indicadores + problema y pregunta), Datos y partición (explica en lenguaje sencillo qué es TRAIN y TEST, gráfico y tamaños), Objetivo y unidad, Método y fuente; el ROC-AUC de prueba se quitó del contexto (está en Modelos)</p></td>
+</tr>
+<tr class="row-even"><td><p>Diseño visual y métrica</p></td>
+<td><p>estética de documento: tarjetas en todo, párrafos largos, siete métricas, rojo para la clase «tardía»</p></td>
+<td><p>estética de aplicación de analítica: KPI principal, títulos con hallazgos, texto corto con detalle desplegable, gráficos sin tarjeta, <strong>solo ROC-AUC</strong>, rojo solo para alertas, naranja solo para TEST, autores en el encabezado</p></td>
+</tr>
+<tr class="row-odd"><td><p>Organización</p></td>
+<td><p>EDA y modelos en páginas largas</p></td>
+<td><p>subpestañas internas, pestañas fijas, insignias TRAIN / OOF / TEST, tarjetas de calidad</p></td>
+</tr>
+<tr class="row-even"><td><p>Lenguaje de resultados</p></td>
+<td><p>«no hay patrón geográfico», «no hay tendencia», «no favorece ni perjudica», «aprendió exactamente las reglas», «más datos no mejorarían»</p></td>
+<td><p>formulaciones acotadas a lo que se midió (capítulos 14 y 15)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cifras de los textos</p></td>
+<td><p>escritas a mano</p></td>
+<td><p>calculadas desde los artefactos (<code class="docutils literal notranslate"><span class="pre">textos.py</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>Despliegue</p></td>
+<td><p>solo ejecución local en 127.0.0.1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">render.yaml</span></code>, <code class="docutils literal notranslate"><span class="pre">gunicorn</span> <span class="pre">dashboard.app:server</span></code>, host 0.0.0.0 y puerto por variable <code class="docutils literal notranslate"><span class="pre">PORT</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Informe de desarrollo</p></td>
+<td><p>Interpretaciones y detalles mezclados o ausentes en algunos resultados</p></td>
+<td><p>Cada resultado del dashboard tiene dos bloques en los capítulos 13–15: <strong>Interpretación</strong> y <strong>Detalles que no aparecen en el dashboard</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las métricas previas (ROC-AUC, Accuracy, Recall, F1, AP, Brier) y los resultados de los capítulos 1 a 12 <strong>no cambian</strong>; <code class="docutils literal notranslate"><span class="pre">verificar_consistencia.py</span></code> lo comprueba contra las tablas del capítulo 11.</p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="14_dashboard_eda.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">14. Pestaña «EDA»: interpretación de cada resultado</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-y-ejecucion">Arquitectura y ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indicadores-de-la-pestana-1">13.1 Indicadores de la pestaña 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pedido-vs-linea-de-pedido-el-nivel-de-analisis">13.2 Pedido vs línea de pedido: el nivel de análisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-importancia-y-pregunta">13.3 Problema, importancia y pregunta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-la-variable-objetivo-corregida">13.4 Definición de la variable objetivo (corregida)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metrica-elegida-metricas-complementarias-y-lenguaje-de-referencia">13.5 Métrica elegida, métricas complementarias y lenguaje de referencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#particion-cronologica">13.6 Partición cronológica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-de-consistencia-dashboard-libro">13.7 Verificación de consistencia dashboard ↔ libro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-cambios-de-esta-version">13.8 Registro de cambios de esta versión</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Proyecto de Machine Learning — Polo y Pallares
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
