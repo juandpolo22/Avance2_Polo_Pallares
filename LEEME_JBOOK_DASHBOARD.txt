@@ -1,0 +1,17 @@
+JBOOK DEL DASHBOARD (capitulos 13, 14 y 15) - TODO INCLUIDO
+
+Dashboard desplegado: https://dataco-dashboard.onrender.com/
+
+Para generar el HTML, abre Anaconda Prompt en esta carpeta (la que contiene _config.yml) y ejecuta:
+
+    conda activate dash_env
+    pip install -r requirements.txt        (solo la primera vez; mismas versiones del proyecto)
+    python generar_html.py
+
+Resultado: _build\html\index.html (se abre solo en el navegador).
+
+- Los notebooks ya traen sus resultados guardados (execute_notebooks: "off").
+- Los datos estan en data\DataCoSupplyChainDataset.zip; el codigo los lee directamente del ZIP.
+- generar_html.py repara, si hace falta, el bloqueo de Windows ("Una directiva de Control de aplicaciones
+  bloqueo este archivo") que afecta a SQLAlchemy, y luego compila el libro.
+- Este paquete solo trae los capitulos 13 a 15; las referencias a los capitulos 1 a 12 remiten al libro del Entregable 1.

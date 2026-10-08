@@ -1,0 +1,6 @@
+# Tabla de contenidos: solo los capítulos asociados al dashboard (Entregable 2).
+format: jb-book
+root: notebooks/13_dashboard_contexto
+chapters:
+- file: notebooks/14_dashboard_eda
+- file: notebooks/15_dashboard_modelos
